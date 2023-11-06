@@ -1,0 +1,45 @@
+from tkinter import *
+from tkinter import ttk
+
+root = Tk()
+root.title('Message Viewer')
+
+main_frame = Frame(root)
+main_frame.pack(fill = BOTH, expand=1 )
+
+canvas = Canvas(main_frame)
+canvas.pack(side = LEFT, fill = BOTH, expand=1 )
+
+
+
+#create scroll bars
+horizon = ttk.Scrollbar(main_frame, orient=HORIZONTAL, command=canvas.xview)
+horizon.pack(side = RIGHT, fill=X)
+vertical = ttk.Scrollbar(main_frame, orient=VERTICAL, command = canvas.yview)
+vertical.pack(side = RIGHT, fill=Y)
+
+#configure canvas things you know how it is
+canvas.configure(xscrollcommand = horizon.set)
+canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion = canvas.bbox("all")))
+canvas.configure(yscrollcommand=vertical.set)
+canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion = canvas.bbox("all")))
+
+frame = Frame(canvas)
+
+canvas.create_window((0,0), window=frame, anchor="nw")
+
+
+file = open("messages.txt","r")
+contents = file.read()
+file.close()
+
+
+
+#myimg = PhotoImage(file='test image.png')
+#canvas.create_image(10, 10, image=myimg)
+
+canvas.create_text(1, 1, text=contents , anchor='nw', font='TkMenuFont', fill='black')
+
+#canvas.create_text(1, 700, text='testy mctestface', anchor='nw', font='TkMenuFont', fill='red')
+
+root.mainloop()
