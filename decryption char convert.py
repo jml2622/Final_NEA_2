@@ -5,6 +5,7 @@ class encryption():
         self.array = ['E', ',','P', ',', 'H', ',', 'H', ',', 'K', ',', 'M', ',', 'W', ',', '&', ',', 'E', ',', 'P', ',', 'H', ',', 'H', ',', '&', ',', 'W', ',', 'M', ',', 'K', ',']
         self.pos1 = 0
         self.pos2 = 1
+        self.array = self.array[0::2]
         self.string = []
     def ConverttoAscii(self):
         for i in range(0,len(self.array)):
@@ -16,10 +17,10 @@ class encryption():
             temp = ord(temp)
             self.string.append(temp)
             print(self.string)
-        for d in range(0,len(self.string)):
-            while d > len(self.string)+1:
-                d = d + 1
-                del self.string[d]
+        #for d in range(0,len(self.string)):
+            #while d > len(self.string)+1:
+                #d = d + 1
+                #del self.string[d]
 
     def PosEdit(self):
         for n in range (1,len(self.string)):
